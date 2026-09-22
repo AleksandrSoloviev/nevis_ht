@@ -1,0 +1,62 @@
+.shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-background-primary);
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-height);
+  padding: 0 var(--space-page);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  height: 24px;
+}
+
+.wordmark {
+  display: block;
+  height: 24px;
+  width: auto;
+}
+
+.main {
+  flex: 1;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  padding: 0 var(--space-page) 48px;
+}
+
+.title {
+  margin: 0 0 24px;
+  font-size: var(--font-title-size);
+  line-height: var(--font-title-line);
+  font-weight: var(--font-title-weight);
+  letter-spacing: -0.02em;
+}
+
+.frame {
+  background: var(--color-surface);
+  border-radius: var(--radius-page);
+  padding: var(--space-card);
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  min-width: 0;
+  max-width: 100%;
+}

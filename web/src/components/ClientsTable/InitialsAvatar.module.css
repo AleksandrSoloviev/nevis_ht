@@ -1,0 +1,15 @@
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--color-avatar);
+  color: var(--color-ink);
+  font-size: 9px;
+  line-height: 1;
+  font-weight: 600;
+  flex-shrink: 0;
+}

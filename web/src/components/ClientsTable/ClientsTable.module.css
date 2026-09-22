@@ -1,0 +1,40 @@
+.scroller {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.scrollerInner {
+  width: max-content;
+  min-width: 100%;
+}
+
+.table {
+  width: max-content;
+  min-width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.headName,
+.headMonth {
+  height: 36px;
+  padding: 0 8px;
+  text-align: right;
+  font-size: var(--font-footnote-size);
+  line-height: var(--font-footnote-line);
+  font-weight: 600;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+.headName {
+  width: var(--table-name-width);
+  text-align: left;
+}
+
+.headMonth {
+  width: var(--table-month-width);
+}

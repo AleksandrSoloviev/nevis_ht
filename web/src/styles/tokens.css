@@ -1,0 +1,45 @@
+:root {
+  --color-background-primary: #f7f5ed;
+  --color-surface: #ffffff;
+  --color-ink: #0d0d0d;
+  --color-muted: #666666;
+  --color-axis: #737373;
+  --color-border: #e6e1d3;
+  --color-error: #b42318;
+  --color-row-hover: #efebe0;
+  --color-chart-placeholder: #b29df8;
+  --color-chart-existing: #b29df8;
+  --color-chart-organic: #f4beb4;
+  --color-chart-paid: #a75e6e;
+  --color-chart-grid: #e6e1d3;
+  --color-avatar: #e6e1d3;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-title-size: 35px;
+  --font-title-line: 125%;
+  --font-title-weight: 600;
+  --font-body-size: 14px;
+  --font-body-line: 20px;
+  --font-body-weight: 400;
+  --font-footnote-size: 12px;
+  --font-footnote-line: 16px;
+  --font-footnote-weight: 400;
+  --radius-page: 12px;
+  --radius-tooltip: 8px;
+  --space-page: 32px;
+  --space-card: 24px;
+  --header-height: 80px;
+  --table-name-width: 280px;
+  --table-month-width: 64px;
+  --indent-step: 24px;
+  --chevron-size: 20px;
+  --avatar-size: 20px;
+}
+
+@media (max-width: 375px) {
+  :root {
+    --space-page: 16px;
+    --header-height: 64px;
+    --table-name-width: 160px;
+    --table-month-width: 56px;
+  }
+}

@@ -1,0 +1,109 @@
+.row {
+  cursor: default;
+}
+
+.row[data-expandable="true"] {
+  cursor: pointer;
+}
+
+.row:hover,
+.row[data-hovered="true"] {
+  background: var(--color-row-hover);
+}
+
+.name,
+.month {
+  height: 40px;
+  padding: 0 8px;
+  text-align: right;
+  font-size: var(--font-body-size);
+  line-height: var(--font-body-line);
+  font-weight: var(--font-body-weight);
+  color: var(--color-ink);
+  font-variant-numeric: tabular-nums;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.name {
+  width: var(--table-name-width);
+  text-align: left;
+}
+
+.month {
+  width: var(--table-month-width);
+}
+
+.nameInner {
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+}
+
+.nameInner[data-level="1"] {
+  padding-inline-start: 0;
+}
+
+.nameInner[data-level="2"] {
+  padding-inline-start: var(--indent-step);
+}
+
+.nameInner[data-level="3"] {
+  padding-inline-start: calc(var(--indent-step) * 2);
+}
+
+.nameInner[data-level="4"] {
+  padding-inline-start: calc(var(--indent-step) * 3);
+}
+
+.nameButton {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.nameButton:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--chevron-size);
+  height: var(--chevron-size);
+  margin: 0 4px 0 0;
+  flex-shrink: 0;
+}
+
+.nameButton[aria-expanded="true"] .chevron {
+  transform: rotate(90deg);
+}
+
+.chevron {
+  display: block;
+  width: 16px;
+  height: 16px;
+  transition: transform 120ms ease;
+}
+
+.spacer {
+  width: var(--chevron-size);
+  height: var(--chevron-size);
+  margin-right: 4px;
+  flex-shrink: 0;
+}
+
+.label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
