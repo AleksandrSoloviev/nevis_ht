@@ -20,10 +20,13 @@ export const SERIES_LABELS: Record<SeriesKey, string> = {
 
 export type ChartSeries = Record<SeriesKey, number[]>;
 
+export const MIN_VISIBLE_SEGMENT = 12;
+
 export type ChartPoint = {
   month: string;
   monthAccessible: string;
-} & Record<SeriesKey, number>;
+} & Record<SeriesKey, number> &
+  Record<`${SeriesKey}Paint`, number>;
 
 const CHANNEL_TO_SERIES: Record<string, SeriesKey> = {
   "Existing clients": "existingClients",
@@ -57,12 +60,66 @@ export const buildChartSeries = (company: Company): ChartSeries => {
   return { placeholder, existingClients, newOrganic, newPaid };
 };
 
+export const visibleSegmentValues = (
+  values: Record<SeriesKey, number>,
+  floor = MIN_VISIBLE_SEGMENT,
+): Record<SeriesKey, number> => {
+  const paint: Record<SeriesKey, number> = { ...values };
+  let debt = 0;
+
+  for (const key of SERIES_KEYS) {
+    const value = paint[key];
+    if (value > 0 && value < floor) {
+      debt += floor - value;
+      paint[key] = floor;
+    }
+  }
+
+  const donors = SERIES_KEYS.filter((key) => values[key] >= floor).sort(
+    (left, right) => paint[right] - paint[left],
+  );
+
+  for (const key of donors) {
+    if (debt <= 0) break;
+    const spare = Math.max(0, paint[key] - floor);
+    const take = Math.min(debt, spare);
+    paint[key] -= take;
+    debt -= take;
+  }
+
+  if (debt > 0) {
+    const lifted = SERIES_KEYS.filter(
+      (key) => values[key] > 0 && values[key] < floor,
+    ).sort((left, right) => paint[right] - paint[left]);
+
+    for (const key of lifted) {
+      if (debt <= 0) break;
+      const giveBack = Math.min(debt, paint[key] - values[key]);
+      paint[key] -= giveBack;
+      debt -= giveBack;
+    }
+  }
+
+  return paint;
+};
+
 export const chartPoints = (series: ChartSeries): ChartPoint[] =>
-  MONTHS.map((month) => ({
-    month: month.visual,
-    monthAccessible: month.accessible,
-    placeholder: series.placeholder[month.index],
-    existingClients: series.existingClients[month.index],
-    newOrganic: series.newOrganic[month.index],
-    newPaid: series.newPaid[month.index],
-  }));
+  MONTHS.map((month) => {
+    const values: Record<SeriesKey, number> = {
+      placeholder: series.placeholder[month.index],
+      existingClients: series.existingClients[month.index],
+      newOrganic: series.newOrganic[month.index],
+      newPaid: series.newPaid[month.index],
+    };
+    const paint = visibleSegmentValues(values);
+
+    return {
+      month: month.visual,
+      monthAccessible: month.accessible,
+      ...values,
+      placeholderPaint: paint.placeholder,
+      existingClientsPaint: paint.existingClients,
+      newOrganicPaint: paint.newOrganic,
+      newPaidPaint: paint.newPaid,
+    };
+  });

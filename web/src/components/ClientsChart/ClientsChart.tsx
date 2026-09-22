@@ -12,6 +12,7 @@ import {
   SERIES_LABELS,
   buildChartSeries,
   chartPoints,
+  type ChartPoint,
   type SeriesKey,
 } from "../../domain/chart-series";
 import type { Company } from "../../domain/types";
@@ -32,6 +33,9 @@ type ClientsChartProps = {
 };
 
 const Y_TICKS = [0, 50, 100, 150, 200, 250, 300, 350, 400];
+
+const bodyPaint = (point: ChartPoint): number =>
+  point.placeholderPaint + point.existingClientsPaint;
 
 export const ClientsChart = ({ company }: ClientsChartProps) => {
   const series = buildChartSeries(company);
@@ -128,7 +132,7 @@ export const ClientsChart = ({ company }: ClientsChartProps) => {
                   />
                   <Tooltip cursor={false} content={<ChartTooltip />} />
                   <Bar
-                    dataKey="placeholder"
+                    dataKey={bodyPaint}
                     name={SERIES_LABELS.placeholder}
                     stackId="clients"
                     fill={CHART_FILLS.placeholder}
@@ -136,15 +140,7 @@ export const ClientsChart = ({ company }: ClientsChartProps) => {
                     isAnimationActive={false}
                   />
                   <Bar
-                    dataKey="existingClients"
-                    name={SERIES_LABELS.existingClients}
-                    stackId="clients"
-                    fill={CHART_FILLS.existingClients}
-                    maxBarSize={28}
-                    isAnimationActive={false}
-                  />
-                  <Bar
-                    dataKey="newOrganic"
+                    dataKey="newOrganicPaint"
                     name={SERIES_LABELS.newOrganic}
                     stackId="clients"
                     fill={CHART_FILLS.newOrganic}
@@ -152,7 +148,7 @@ export const ClientsChart = ({ company }: ClientsChartProps) => {
                     isAnimationActive={false}
                   />
                   <Bar
-                    dataKey="newPaid"
+                    dataKey="newPaidPaint"
                     name={SERIES_LABELS.newPaid}
                     stackId="clients"
                     fill={CHART_FILLS.newPaid}

@@ -1,29 +1,13 @@
 .footer {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 16px;
+  display: flex;
+  justify-content: center;
   padding: 24px var(--space-page) 32px;
-}
-
-.left,
-.right {
-  margin: 0;
-  font-size: var(--font-footnote-size);
-  line-height: var(--font-footnote-line);
-  font-weight: var(--font-footnote-weight);
-  color: var(--color-ink);
-}
-
-.right {
-  text-align: right;
 }
 
 .logo {
   display: block;
   height: 24px;
   width: auto;
-  justify-self: center;
   filter: var(--logo-filter);
 }
 

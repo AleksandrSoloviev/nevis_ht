@@ -16,8 +16,9 @@ describe("loaded dashboard", () => {
     render(<App />);
 
     expect(await screen.findByRole("heading", { name: "Clients" })).toBeInTheDocument();
-    expect(screen.getByText("Take-home task")).toBeInTheDocument();
-    expect(screen.getByText("Web Engineer")).toBeInTheDocument();
+    expect(screen.getAllByAltText("Nevis")).toHaveLength(2);
+    expect(screen.queryByText("Take-home task")).not.toBeInTheDocument();
+    expect(screen.queryByText("Web Engineer")).not.toBeInTheDocument();
 
     const table = screen.getByRole("table", { name: "Book of business" });
     expect(within(table).getByText("Company")).toBeInTheDocument();
