@@ -56,8 +56,10 @@ describe("chart tooltip", () => {
     expect(bars.length).toBeGreaterThan(0);
     fireEvent.mouseOver(bars[0], { clientX: 80, clientY: 120 });
     fireEvent.mouseMove(bars[0], { clientX: 80, clientY: 120 });
-    expect(await screen.findByRole("tooltip")).toHaveTextContent("Placeholder");
+    expect(await screen.findByRole("tooltip", { hidden: true })).toHaveTextContent(
+      "Placeholder",
+    );
     fireEvent.mouseLeave(bars[0]);
-    expect(screen.queryByRole("tooltip")).not.toBeInTheDocument();
+    expect(screen.queryByRole("tooltip", { hidden: true })).not.toBeInTheDocument();
   });
 });

@@ -50,7 +50,6 @@ export const TreeRow = ({
     <tr
       id={rowId}
       className={styles.row}
-      aria-level={level}
       data-expandable={expandable ? "true" : "false"}
       data-hovered={hovered ? "true" : undefined}
       data-kind={kind}
@@ -97,6 +96,7 @@ export const TreeRow = ({
               <span className={styles.label}>{node.name}</span>
             </>
           )}
+          <span className="sr-only">{`Level ${level}`}</span>
         </div>
       </th>
       {node.values.map((value, index) => (
