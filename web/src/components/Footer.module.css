@@ -24,4 +24,9 @@
   height: 24px;
   width: auto;
   justify-self: center;
+  filter: var(--logo-filter);
+}
+
+:global(:root[data-theme-transition="on"]) .logo {
+  transition: filter var(--theme-duration) ease;
 }

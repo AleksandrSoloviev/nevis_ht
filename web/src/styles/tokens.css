@@ -1,4 +1,91 @@
+@property --color-background-primary {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #f7f5ed;
+}
+
+@property --color-surface {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #ffffff;
+}
+
+@property --color-ink {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #0d0d0d;
+}
+
+@property --color-muted {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #666666;
+}
+
+@property --color-axis {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #737373;
+}
+
+@property --color-border {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #e6e1d3;
+}
+
+@property --color-error {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #b42318;
+}
+
+@property --color-row-hover {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #efebe0;
+}
+
+@property --color-chart-placeholder {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #b29df8;
+}
+
+@property --color-chart-existing {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #b29df8;
+}
+
+@property --color-chart-organic {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #f4beb4;
+}
+
+@property --color-chart-paid {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #a75e6e;
+}
+
+@property --color-chart-grid {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #e6e1d3;
+}
+
+@property --color-avatar {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #e6e1d3;
+}
+
 :root {
+  color-scheme: light;
+  --theme-duration: 280ms;
+  --logo-filter: none;
   --color-background-primary: #f7f5ed;
   --color-surface: #ffffff;
   --color-ink: #0d0d0d;
@@ -33,6 +120,49 @@
   --indent-step: 24px;
   --chevron-size: 20px;
   --avatar-size: 20px;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --logo-filter: invert(1);
+  --color-background-primary: #1c1a16;
+  --color-surface: #26231e;
+  --color-ink: #f6f1e7;
+  --color-muted: #b7b0a3;
+  --color-axis: #a8a093;
+  --color-border: #3f3a33;
+  --color-error: #ffb4ab;
+  --color-row-hover: #332f29;
+  --color-chart-placeholder: #c4b5ff;
+  --color-chart-existing: #c4b5ff;
+  --color-chart-organic: #f4beb4;
+  --color-chart-paid: #e7a0ad;
+  --color-chart-grid: #3f3a33;
+  --color-avatar: #3f3a33;
+}
+
+:root[data-theme-transition="on"] {
+  transition:
+    --color-background-primary var(--theme-duration) ease,
+    --color-surface var(--theme-duration) ease,
+    --color-ink var(--theme-duration) ease,
+    --color-muted var(--theme-duration) ease,
+    --color-axis var(--theme-duration) ease,
+    --color-border var(--theme-duration) ease,
+    --color-error var(--theme-duration) ease,
+    --color-row-hover var(--theme-duration) ease,
+    --color-chart-placeholder var(--theme-duration) ease,
+    --color-chart-existing var(--theme-duration) ease,
+    --color-chart-organic var(--theme-duration) ease,
+    --color-chart-paid var(--theme-duration) ease,
+    --color-chart-grid var(--theme-duration) ease,
+    --color-avatar var(--theme-duration) ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --theme-duration: 0ms;
+  }
 }
 
 @media (max-width: 375px) {
